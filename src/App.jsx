@@ -8,155 +8,35 @@ import {
 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
-// Data Pengguna Default
-const INITIAL_USERS = [
-  { id: 'u1', name: 'Budi Santoso', email: 'budi.santoso@konimex.com', role: 'Inisiator (User 1)' },
-  { id: 'u2', name: 'Siti Aminah', email: 'siti.aminah@konimex.com', role: 'Tim Finance' },
-  { id: 'u3', name: 'Rudi Hermawan', email: 'rudi.hermawan@konimex.com', role: 'Tim Produksi' },
-  { id: 'u4', name: 'Admin Utama', email: 'admin@konimex.com', role: 'Admin' },
-];
-
-const INITIAL_PROJECTS = [
-  {
-    id: 'PRJ-2026-001',
-    title: 'Efisiensi Energi Mesin Kemasan Line 4',
-    category: 'Manufaktur',
-    amount: 135000000,
-    initiator: 'Budi Santoso',
-    initiatorEmail: 'budi.santoso@konimex.com',
-    createdAt: '2026-03-10',
-    status: 'Final Approved',
-    isLocked: true,
-    mainFile: 'Tabel_Savings_Line4.xlsx',
-    detailFile: 'Perhitungan_KWH_Line4.pdf',
-    team: ['siti.aminah@konimex.com', 'rudi.hermawan@konimex.com'],
-    confirmations: [
-      { email: 'siti.aminah@konimex.com', name: 'Siti Aminah', status: 'Approved', date: '2026-03-11 09:30', note: 'Angka biaya hemat energi sudah sesuai estimasi.' },
-      { email: 'rudi.hermawan@konimex.com', name: 'Rudi Hermawan', status: 'Approved', date: '2026-03-11 14:15', note: 'Sudah ditinjau bersama tim teknisi.' }
-    ],
-    logs: [
-      { date: '2026-03-10 10:00', text: 'Proyek dibuat oleh Budi Santoso & notifikasi terkirim ke Tim.' },
-      { date: '2026-03-11 09:30', text: 'Siti Aminah menyetujui konfirmasi.' },
-      { date: '2026-03-11 14:15', text: 'Rudi Hermawan menyetujui konfirmasi.' },
-      { date: '2026-03-11 14:15', text: 'Semua anggota tim menyetujui. Data TERKUNCI secara otomatis.' }
-    ]
-  },
-  {
-    id: 'PRJ-2026-002',
-    title: 'Reduksi Penggunaan Bahan Karton Sekunder',
-    category: 'Logistik',
-    amount: 85000000,
-    initiator: 'Budi Santoso',
-    initiatorEmail: 'budi.santoso@konimex.com',
-    createdAt: '2026-03-15',
-    status: 'Pending Confirmation',
-    isLocked: false,
-    mainFile: 'Cost_Savings_Karton_2026.xlsx',
-    detailFile: 'Analisis_Vendor_Karton.pdf',
-    team: ['siti.aminah@konimex.com', 'rudi.hermawan@konimex.com'],
-    confirmations: [
-      { email: 'siti.aminah@konimex.com', name: 'Siti Aminah', status: 'Approved', date: '2026-03-16 11:00', note: 'Perhitungan kuantitas valid.' },
-      { email: 'rudi.hermawan@konimex.com', name: 'Rudi Hermawan', status: 'Pending', date: '-', note: '' }
-    ],
-    logs: [
-      { date: '2026-03-15 08:30', text: 'Proyek dibuat oleh Budi Santoso & notifikasi terkirim ke Tim.' },
-      { date: '2026-03-16 11:00', text: 'Siti Aminah menyetujui konfirmasi.' },
-      { date: '2026-03-22 08:30', text: 'System: Pengingat konfirmasi mingguan dikirim ke Rudi Hermawan.' }
-    ]
-  }
-];
-
-export default function App() {
-  // State Sesi Login
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-  const [loginError, setLoginError] = useState('');
-
-  // State Utama Aplikasi
-  const [users, setUsers] = useState(INITIAL_USERS);
-  const [projects, setProjects] = useState(INITIAL_PROJECTS);
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [selectedProject, setSelectedProject] = useState(null);
-
-  // Form Input
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('Manufaktur');
-  const [amount, setAmount] = useState('');
-  const [selectedTeam, setSelectedTeam] = useState([]);
-  const [mainFile, setMainFile] = useState(null);
-  const [detailFile, setDetailFile] = useState(null);
-
-  // Modal State
-  const [rejectModalOpen, setRejectModalOpen] = useState(false);
-  const [rejectProject, setRejectProject] = useState(null);
-  const [rejectReason, setRejectReason] = useState('');
-  const [editProjectModal, setEditProjectModal] = useState(null);
-  const [newUserEmail, setNewUserEmail] = useState('');
-  const [newUserName, setNewUserName] = useState('');
-  const [newUserRole, setNewUserRole] = useState('User');
-
-  // Format Angka Indonesia
-  const formatIDR = (val) => {
-    return new Intl.NumberFormat('id-ID', { style: 'currency', currencyPenyebab erornya sudah terlihat sangat jelas dari pesan log Vercel di layar Anda[cite: 13]:
-
-> **`/vercel/path0/src/App.jsx:316:0: ERROR: Unexpected end of file`**[cite: 13]
-> **`file: /vercel/path0/src/App.jsx:316:0`**[cite: 13]
-
-Artinya, kode di dalam file **`src/App.jsx`** terpotong di baris 316 (belum selesai/kurang tanda penutup kurung `}` atau `;`) saat disalin ke GitHub[cite: 13].
-
----
-
-### Solusi Perbaikan (Salin Kode Lengkap)
-
-Agar aplikasi memiliki **Halaman Login** dan seluruh fitur **Cost Savings** berjalan tanpa terpotong, ikuti langkah ini:
-
-1. Buka file **`src/App.jsx`** di repository GitHub Anda (`github.com/fla100/Cost-Saving-App`)[cite: 13].
-2. Klik ikon **pensil (Edit this file)** di kanan atas.
-3. Hapus **seluruh isi file** yang ada saat ini.
-4. Salin (copy) **seluruh kode utuh** di bawah ini (pastikan dari baris pertama hingga baris paling akhir tersalin semua)[cite: 13]:
-
-```javascript
-import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  DollarSign, Upload, FileText, CheckCircle2, XCircle, Clock, 
-  UserCheck, Users, Shield, Plus, Trash2, Edit3, Lock, Mail, 
-  Bell, BarChart3, Search, Filter, Check, X, AlertTriangle, 
-  Send, RefreshCw, Eye, FileUp, Download, Info, ChevronRight, 
-  LogOut, HelpCircle, Building
-} from 'lucide-react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-
 const INITIAL_USERS = [
   { id: 'u1', name: 'Budi Santoso', email: 'budi.santoso@company.com', role: 'Inisiator (User 1)' },
   { id: 'u2', name: 'Siti Aminah', email: 'siti.aminah@company.com', role: 'Tim Finance' },
-  { id: 'u3', name: 'Rudi Hermawan', email: 'rudi.hermawan@company.com', role: 'Tim Operations' },
-  { id: 'u4', name: 'Admin Utama', email: 'admin@company.com', role: 'Administrator' },
+  { id: 'u3', name: 'Ahmad Dahlan', email: 'ahmad.dahlan@company.com', role: 'Tim Management' },
+  { id: 'u4', name: 'Admin System', email: 'admin@company.com', role: 'Admin' }
 ];
 
-const INITIAL_PROJECTS = [
+const INITIAL_IDEAS = [
   {
-    id: 'PRJ-2026-001',
-    title: 'Efisiensi Energi Pabrik A',
-    category: 'Operasional',
-    amount: 450000000,
+    id: 'CS-2026-001',
+    title: 'Digitalisasi Dokumen Tagihan Operasional',
+    category: 'Efisiensi Operasional',
+    targetAmount: 150000000,
+    actualAmount: 120000000,
     initiator: 'Budi Santoso',
-    initiatorEmail: 'budi.santoso@company.com',
-    createdAt: '2026-09-15',
-    mainFile: 'Tabel_Cost_Savings_Energi.xlsx',
-    detailFile: 'Detail_Perhitungan_KWH.pdf',
-    team: [
-      { name: 'Siti Aminah', email: 'siti.aminah@company.com', status: 'Approved', confirmedAt: '2026-09-16 10:30', note: '' },
-      { name: 'Rudi Hermawan', email: 'rudi.hermawan@company.com', status: 'Approved', confirmedAt: '2026-09-17 14:15', note: '' },
-    ],
-    status: 'Locked',
-    logs: [
-      { id: 'l1', timestamp: '2026-09-15 09:00', actor: 'Budi Santoso', action: 'Submit Project', description: 'Menginput data Cost Savings dan mengunggah file utama & detail.' },
-      { id: 'l2', timestamp: '2026-09-15 09:05', actor: 'System', action: 'Send Email Notification', description: 'Notifikasi konfirmasi dikirim ke Siti Aminah & Rudi Hermawan.' },
-      { id: 'l3', timestamp: '2026-09-16 10:30', actor: 'Siti Aminah', action: 'Approved', description: 'Menyetujui alokasi efisiensi biaya.' },
-      { id: 'l4', timestamp: '2026-09-17 14:15', actor: 'Rudi Hermawan', action: 'Approved', description: 'Menyetujui perhitungan teknis.' },
-      { id: 'l5', timestamp: '2026-09-17 14:15', actor: 'System', action: 'Lock Project', description: 'Semua anggota tim menyetujui. Proyek dikunci otomatis.' }
-    ]
+    status: 'Disetujui',
+    date: '2026-02-15',
+    description: 'Mengurangi penggunaan kertas dan mempercepat verifikasi pembayaran via sistem digital.'
+  },
+  {
+    id: 'CS-2026-002',
+    title: 'Optimasi Rute Distribusi Bahan Baku',
+    category: 'Logistik & Transportasi',
+    targetAmount: 300000000,
+    actualAmount: 280000000,
+    initiator: 'Siti Aminah',
+    status: 'Proses Verifikasi',
+    date: '2026-03-01',
+    description: 'Penataan ulang jadwal pengiriman truk logistik untuk hemat konsumsi bahan bakar.'
   }
 ];
 
@@ -166,97 +46,444 @@ export default function App() {
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
-  const [projects, setProjects] = useState(INITIAL_PROJECTS);
-  const [users, setUsers] = useState(INITIAL_USERS);
+  const [ideas, setIdeas] = useState(INITIAL_IDEAS);
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  // Form State
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('Efisiensi Operasional');
+  const [targetAmount, setTargetAmount] = useState('');
+  const [description, setDescription] = useState('');
 
-  const [formData, setFormData] = useState({
-    title: '',
-    category: 'Operasional',
-    amount: '',
-    teamEmails: [],
-    mainFile: null,
-    detailFile: null
-  });
-
-  const [rejectReason, setRejectReason] = useState('');
-  const [showRejectModal, setShowRejectModal] = useState(false);
-  const [projectToReject, setProjectToReject] = useState(null);
-
-  const [showAddUserModal, setShowAddUserModal] = useState(false);
-  const [newUser, setNewUser] = useState({ name: '', email: '', role: 'Tim Reviewer' });
-
+  // Handle Login
   const handleLogin = (e) => {
-    e?.preventDefault();
+    e.preventDefault();
     if (!loginEmail) {
-      setLoginError('Silakan masukkan email Anda.');
+      setLoginError('Masukkan email Anda');
       return;
     }
-    const foundUser = users.find(u => u.email.toLowerCase() === loginEmail.toLowerCase());
+    const foundUser = INITIAL_USERS.find(u => u.email.toLowerCase() === loginEmail.toLowerCase());
     if (foundUser) {
       setCurrentUser(foundUser);
       setLoginError('');
     } else {
-      setLoginError('Email tidak terdaftar dalam sistem.');
+      setCurrentUser({ id: 'u-guest', name: loginEmail.split('@')[0], email: loginEmail, role: 'User' });
+      setLoginError('');
     }
   };
 
-  const handleQuickLogin = (userObj) => {
-    setCurrentUser(userObj);
-    setLoginEmail(userObj.email);
+  const handleQuickLogin = (user) => {
+    setCurrentUser(user);
     setLoginError('');
   };
 
   const handleLogout = () => {
     setCurrentUser(null);
+    setLoginEmail('');
     setLoginPassword('');
   };
 
-  const handleCreateProject = (e) => {
+  // Handle Add Idea
+  const handleAddIdea = (e) => {
     e.preventDefault();
-    if (!formData.mainFile) {
-      alert('Wajib mengunggah File Tabel Cost Savings!');
-      return;
-    }
-    if (formData.teamEmails.length === 0) {
-      alert('Pilih minimal satu anggota tim untuk konfirmasi!');
-      return;
-    }
+    if (!title || !targetAmount) return;
 
-    const teamList = formData.teamEmails.map(email => {
-      const u = users.find(usr => usr.email === email);
-      return {
-        name: u ? u.name : email,
-        email: email,
-        status: 'Pending',
-        confirmedAt: '-',
-        note: ''
-      };
+    const newIdea = {
+      id: `CS-2026-00${ideas.length + 1}`,
+      title,
+      category,
+      targetAmount: parseFloat(targetAmount) || 0,
+      actualAmount: 0,
+      initiator: currentUser ? currentUser.name : 'User',
+      status: 'Proses Verifikasi',
+      date: new Date().toISOString().split('T')[0],
+      description
+    };
+
+    setIdeas([newIdea, ...ideas]);
+    setTitle('');
+    setTargetAmount('');
+    setDescription('');
+    setActiveTab('ideas');
+  };
+
+  // Metrics
+  const totalTarget = useMemo(() => ideas.reduce((acc, curr) => acc + curr.targetAmount, 0), [ideas]);
+  const totalActual = useMemo(() => ideas.reduce((acc, curr) => acc + curr.actualAmount, 0), [ideas]);
+
+  const categoryData = useMemo(() => {
+    const map = {};
+    ideas.forEach(item => {
+      map[item.category] = (map[item.category] || 0) + item.targetAmount;
     });
+    return Object.keys(map).map(key => ({ name: key, value: map[key] }));
+  }, [ideas]);
 
-    const newPrj = {
-      id: `PRJ-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`,
-      title: formData.title,
-      category: formData.category,
-      amount: parseFloat(formData.amount) || 0,
-      initiator: currentUser.name,
-      initiatorEmail: currentUser.email,
-      createdAt: new Date().toISOString().split('T')[0],
-      mainFile: formData.mainFile.name,
-      detailFile: formData.detailFile ? formData.detailFile.name : null,
-      team: teamList,
-      status: 'Pending Confirmation',
-      logs: [
-        {
-          id: `l-${Date.now()}`,
-          timestamp: new Date().toLocaleString('id-ID'),
-          actor: currentUser.name,
-          action: 'Submit Project',
-          description: 'Menginput data Cost Savings dan mengirimkan permintaan konfirmasi tim.'
-        },
-        {
-          id: `l-${Date.now()+1}`,
-          timestamp: new Date().toLocaleString('id-ID'),
-          actor: 'System',
-          action: 'Send Email Notification',
+  const COLORS = ['#059669', '#0284C7', '#D97706', '#DC2626', '#9333EA'];
+
+  // Layar Login (Jika belum login)
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border border-emerald-500/20">
+          
+          {/* Kolom Kiri: Form Login */}
+          <div className="p-8 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <div className="p-2 bg-emerald-600 text-white rounded-lg">
+                  <Building className="w-6 h-6" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-slate-800">PT KONIMEX</h1>
+                  <p className="text-xs text-slate-500">Cost Savings Management System</p>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-slate-800">Selamat datang kembali</h2>
+                <p className="text-sm text-slate-500 mt-1">Silakan masuk ke akun Anda</p>
+              </div>
+
+              {loginError && (
+                <div className="mb-4 p-3 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200">
+                  {loginError}
+                </div>
+              )}
+
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Email Corporate</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="nama@company.com"
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Password</label>
+                  <input
+                    type="password"
+                    required
+                    placeholder="••••••••"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition duration-200 text-sm"
+                >
+                  Login
+                </button>
+              </form>
+            </div>
+
+            {/* Quick Demo Login Buttons */}
+            <div className="mt-8 pt-6 border-t border-slate-100">
+              <p className="text-xs font-medium text-slate-400 mb-2">Akses Cepat Pengujian (Uji Coba):</p>
+              <div className="flex flex-wrap gap-1.5">
+                {INITIAL_USERS.map((user) => (
+                  <button
+                    key={user.id}
+                    onClick={() => handleQuickLogin(user)}
+                    className="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-600 text-xs rounded border border-slate-200 transition"
+                  >
+                    {user.name.split(' ')[0]}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Kolom Kanan: Visual Banner */}
+          <div className="hidden md:flex bg-emerald-800 p-8 flex-col justify-between relative overflow-hidden text-white">
+            <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-700/50 rounded-full blur-2xl"></div>
+            <div className="relative z-10">
+              <span className="px-3 py-1 bg-emerald-700/80 rounded-full text-xs font-medium border border-emerald-500/30">
+                Strategic Performance
+              </span>
+              <h3 className="text-2xl font-bold mt-4 leading-tight">
+                Kelola & Pantau Inisiatif Efisiensi Biaya Perusahaan
+              </h3>
+              <p className="text-emerald-100 text-sm mt-2">
+                Platform terpadu untuk pengajuan, evaluasi, hingga realisasi target cost saving secara transparan.
+              </p>
+            </div>
+            <div className="relative z-10 text-xs text-emerald-200/80 border-t border-emerald-700/60 pt-4">
+              © 2026 PT Konimex. All rights reserved.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+  // Layar Main Dashboard (Setelah Login)
+  return (
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
+      {/* Header */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-emerald-600 text-white rounded-lg">
+              <Building className="w-5 h-5" />
+            </div>
+            <div>
+              <h1 className="font-bold text-slate-800 text-base leading-none">Cost Savings App</h1>
+              <span className="text-xs text-slate-500">PT Konimex System</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden sm:block">
+              <p className="text-xs font-bold text-slate-800">{currentUser.name}</p>
+              <p className="text-[10px] text-slate-500">{currentUser.role}</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
+              title="Keluar"
+            >
+              <LogOut className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Navigation Tabs */}
+        <div className="flex border-b border-slate-200 mb-6 gap-6">
+          <button
+            onClick={() => setActiveTab('dashboard')}
+            className={`pb-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition ${
+              activeTab === 'dashboard'
+                ? 'border-emerald-600 text-emerald-600'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <BarChart3 className="w-4 h-4" /> Ringkasan Dashboard
+          </button>
+          <button
+            onClick={() => setActiveTab('ideas')}
+            className={`pb-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition ${
+              activeTab === 'ideas'
+                ? 'border-emerald-600 text-emerald-600'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <FileText className="w-4 h-4" /> Daftar Inisiatif ({ideas.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('add')}
+            className={`pb-3 text-sm font-semibold flex items-center gap-2 border-b-2 transition ${
+              activeTab === 'add'
+                ? 'border-emerald-600 text-emerald-600'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <Plus className="w-4 h-4" /> Ajukan Inisiatif Baru
+          </button>
+        </div>
+
+        {/* Tab 1: Dashboard */}
+        {activeTab === 'dashboard' && (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                <div className="p-3 bg-emerald-50 text-emerald-600 rounded-lg">
+                  <DollarSign className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 font-medium">Total Target Savings</p>
+                  <p className="text-xl font-bold text-slate-800">
+                    Rp {totalTarget.toLocaleString('id-ID')}
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                <div className="p-3 bg-blue-50 text-blue-600 rounded-lg">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 font-medium">Realisasi Savings</p>
+                  <p className="text-xl font-bold text-slate-800">
+                    Rp {totalActual.toLocaleString('id-ID')}
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                <div className="p-3 bg-amber-50 text-amber-600 rounded-lg">
+                  <Clock className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 font-medium">Total Inisiatif</p>
+                  <p className="text-xl font-bold text-slate-800">{ideas.length} Proyek</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Chart Section */}
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <h2 className="text-base font-bold text-slate-800 mb-4">Distribusi Target per Kategori</h2>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={categoryData}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={80}
+                      dataKey="value"
+                      label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                    >
+                      {categoryData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip formatter={(value) => `Rp ${value.toLocaleString('id-ID')}`} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: Ideas List */}
+        {activeTab === 'ideas' && (
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+              <div className="relative w-72">
+                <Search className="w-4 h-4 absolute left-3 top-3 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Cari inisiatif..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 text-xs font-semibold text-slate-500 border-b border-slate-200">
+                    <th className="p-4">ID / Judul</th>
+                    <th className="p-4">Kategori</th>
+                    <th className="p-4">Inisiator</th>
+                    <th className="p-4">Target (Rp)</th>
+                    <th className="p-4">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 text-sm">
+                  {ideas
+                    .filter(i => i.title.toLowerCase().includes(searchTerm.toLowerCase()))
+                    .map((item) => (
+                      <tr key={item.id} className="hover:bg-slate-50">
+                        <td className="p-4">
+                          <p className="font-bold text-slate-800">{item.title}</p>
+                          <p className="text-xs text-slate-400">{item.id} • {item.date}</p>
+                        </td>
+                        <td className="p-4 text-slate-600">{item.category}</td>
+                        <td className="p-4 text-slate-600">{item.initiator}</td>
+                        <td className="p-4 font-semibold text-slate-800">
+                          Rp {item.targetAmount.toLocaleString('id-ID')}
+                        </td>
+                        <td className="p-4">
+                          <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${
+                            item.status === 'Disetujui'
+                              ? 'bg-emerald-100 text-emerald-800'
+                              : 'bg-amber-100 text-amber-800'
+                          }`}>
+                            {item.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: Form Add Idea */}
+        {activeTab === 'add' && (
+          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm max-w-2xl mx-auto">
+            <h2 className="text-lg font-bold text-slate-800 mb-4">Pengajuan Inisiatif Cost Saving</h2>
+            <form onSubmit={handleAddIdea} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Judul Inisiatif</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Contoh: Optimasi Pembelian Kertas Office"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Kategori</label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                  >
+                    <option>Efisiensi Operasional</option>
+                    <option>Logistik & Transportasi</option>
+                    <option>Penghematan Energi</option>
+                    <option>Digitalisasi Workflow</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Estimasi Target (Rp)</label>
+                  <input
+                    type="number"
+                    required
+                    placeholder="100000000"
+                    value={targetAmount}
+                    onChange={(e) => setTargetAmount(e.target.value)}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Keterangan / Deskripsi Ringkas</label>
+                <textarea
+                  rows="3"
+                  placeholder="Jelaskan mekanisme penghematan biaya yang diusulkan..."
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm shadow transition"
+              >
+                Kirim Inisiatif
+              </button>
+            </form>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
